@@ -18,32 +18,16 @@ const list = {
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.12 } },
 };
-
 const card = {
   hidden: { opacity: 0, y: 22, scale: 0.98 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-  },
+  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 };
 
-export default function Page() {
+export default function HomeClient() {
   return (
     <main className="relative min-h-dvh">
-      {/* SANITY BANNER — should fade/slide in on load */}
-      <motion.div
-        initial={{ opacity: 0, y: -16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="mx-auto mt-6 w-fit rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs text-white/90 backdrop-blur"
-      >
-        ✅ Animations active (page.tsx is a Client Component)
-      </motion.div>
-
       {/* HERO */}
-      <section className="mx-auto max-w-6xl px-6 pt-12 md:pt-20">
+      <section className="mx-auto max-w-6xl px-6 pt-16 md:pt-24">
         <p className="text-sm tracking-wide text-muted-foreground">PORTFOLIO</p>
         <h1 className="mt-2 text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
           Sami Sipahi
@@ -60,17 +44,10 @@ export default function Page() {
       <section className="mx-auto max-w-6xl px-6 py-12 md:py-16">
         <div className="mb-6 flex items-end justify-between">
           <h2 className="text-2xl font-semibold md:text-3xl">Selected Work</h2>
-          <a href="/projects" className="text-sm text-muted-foreground hover:underline">
-            See all
-          </a>
+          <a href="/projects" className="text-sm text-muted-foreground hover:underline">See all</a>
         </div>
 
-        <motion.ul
-          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-          variants={list}
-          initial="hidden"
-          animate="show"
-        >
+        <motion.ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" variants={list} initial="hidden" animate="show">
           {projects.map((p) => (
             <motion.li
               key={p.title}
@@ -111,10 +88,6 @@ export default function Page() {
           ))}
         </motion.ul>
       </section>
-
-      <footer className="mx-auto max-w-6xl px-6 pb-16 pt-4 text-sm text-muted-foreground">
-        © {new Date().getFullYear()} Sami Sipahi. Built with Next.js & Tailwind.
-      </footer>
     </main>
   );
 }
